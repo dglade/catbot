@@ -1,0 +1,1 @@
+python-simple-hipchat==0.3.3
