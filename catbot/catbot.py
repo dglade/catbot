@@ -5,7 +5,9 @@ import settings
 from datetime import datetime
 
 def speak(hc, room, message):
-    hc.message_room(room, settings.SENDER_NAME, message,
+    hc.message_room(room,
+                    settings.SENDER_NAME,
+                    message,
                     color=settings.MESSAGE_COLOR)
 
 def lurk():
@@ -18,10 +20,8 @@ def lurk():
         print("room: {}, message: {}".format(random_room, random_message))
         history = hc.method('rooms/history',
                             method='GET',
-                            parameters={
-                                'room_id': random_room,
-                                'date': str(datetime.date(datetime.now()))
-                            })
+                            parameters={'room_id': random_room,
+                                        'date': str(datetime.date(datetime.now()))})
         if (len(history['messages']) > 0 and
                 history['messages'] != prior_messages and
                 history['messages'][-1]['from']['name'] in settings.USERS_TO_FOLLOW):
